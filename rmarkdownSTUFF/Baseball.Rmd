@@ -48,14 +48,14 @@ DT::datatable(T524)
 
 1.  Write the null and alternative hypotheses to test whether the on base percentage is related to position.
 
-$H_0:$
+$H_0:$ $mu_{1} = mu_{2} = mu_{3} =$ $/mu_{4}$
 
-$H_A:$
+$H_A:$at least one mean obp for a postion does not equal another mean obp
 
 2. List the conditions necessary for performing ANOVA:
-  +
-  +
-  +
+  +The observations should be independent within and across groups.
+  +The data within each group should be nearly normal
+  +The variability across the groups should be roughly equal.
 
 
 
@@ -88,7 +88,8 @@ summary(mod.aov)
 **Your turn:**  Compute the $p-$value using `pf`.  Does your answer agree with the output from the ANOVA table?
 
 ```{r}
-# Your code here
+#(F value, degrees of freedom.)
+1 - pf(1.994,3,323) #prob that F(sub 3, 323) is greater than or = 1.994
 ```
 
 ```{r}
@@ -167,7 +168,8 @@ summary(mod2.aov)
 $$CI_{1 - \alpha_e}(\mu_i - \mu_j) = (\bar{Y}_{i\bullet} - \bar{Y}_{j\bullet}) \pm t_{1 - \tfrac{\alpha_c}{2K};df_{Error}}\sqrt{MS_{Error}}\sqrt{\frac{1}{n_i} + \frac{1}{n_j}}$$
 ```{r}
 T5N
-(0.3354 - 0.3348) +c(-1, 1)*qt(1 - 0.05/(2*choose(7,2)), 320)*sqrt(0.001182)*sqrt(1/33 + 1/39)
+(0.3554 - 0.3348) +c(-1, 1)*qt(1 - 0.05/(2*choose(7,2)), 320)*sqrt(0.001182)*sqrt(1/33 + 1/39)
+#confidence interval (95%) for 1st base and 2nd base players 
 ```
 
 **Your Turn:**
@@ -175,7 +177,8 @@ T5N
 Find a 95% Bonferroni CI for the $\mu_{3B} - \mu_{1B}$
 
 ```{r}
-# Your code here
+(0.3224 - 0.3554) +c(-1, 1)*qt(1 - 0.05/(2*choose(7,2)), 320)*sqrt(0.001182)*sqrt(1/33 + 1/40)
+#confidence interval (95%) for 3rd base and 1st base
 ```
 
 Another approach is to use `pairwise.t.test()`
